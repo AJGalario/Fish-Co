@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb54vyh3qm541"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/MainMenu.gd" id="1_menu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.12, 0.22, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "🐟 FISH-CO: ADOPTION FRENZY 🐟"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "The Party Game of Aquariums, Escapes & Glory!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBox"]
+layout_mode = 2
+
+[node name="EnterAquariumBtn" type="Button" parent="CenterContainer/VBox"]
+custom_minimum_size = Vector2(380, 65)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Enter Aquarium Lobby"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBox"]
+layout_mode = 2
+
+[node name="NetworkBox" type="HBoxContainer" parent="CenterContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HostBtn" type="Button" parent="CenterContainer/VBox/NetworkBox"]
+custom_minimum_size = Vector2(130, 50)
+layout_mode = 2
+text = "Host LAN"
+
+[node name="IPEdit" type="LineEdit" parent="CenterContainer/VBox/NetworkBox"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+placeholder_text = "127.0.0.1"
+
+[node name="JoinBtn" type="Button" parent="CenterContainer/VBox/NetworkBox"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Join"

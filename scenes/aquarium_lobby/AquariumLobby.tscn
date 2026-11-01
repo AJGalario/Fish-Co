@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6543bnhy8765"]
+
+[ext_resource type="Script" path="res://scenes/aquarium_lobby/AquariumLobby.gd" id="1_lobby"]
+[ext_resource type="PackedScene" path="res://scenes/aquarium_lobby/MatchSettingsDialog.tscn" id="2_settings"]
+
+[node name="AquariumLobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lobby")
+
+[node name="TankArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaterBackground" type="ColorRect" parent="TankArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.25, 0.42, 1)
+
+[node name="SandBed" type="ColorRect" parent="TankArea"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.76, 0.65, 0.45, 1)
+
+[node name="AquariumGlassBorder" type="ReferenceRect" parent="TankArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.4, 0.8, 1, 0.5)
+border_width = 8.0
+editor_only = false
+
+[node name="FishContainer" type="Node2D" parent="TankArea"]
+
+[node name="HandVisual" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 800.0
+offset_top = -140.0
+offset_right = 880.0
+offset_bottom = -20.0
+color = Color(0.9, 0.75, 0.65, 1)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Margin" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="HUD/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 54
+text = "🏠 THE AQUARIUM TANK"
+horizontal_alignment = 1
+
+[node name="PlayerCountLabel" type="Label" parent="HUD/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Fishes in Aquarium: 2 / 4"
+horizontal_alignment = 1
+
+[node name="BottomControls" type="HBoxContainer" parent="HUD/Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="SettingsBtn" type="Button" parent="HUD/Margin/BottomControls"]
+custom_minimum_size = Vector2(240, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "⚙️ Match Settings"
+
+[node name="AddPlayerBtn" type="Button" parent="HUD/Margin/BottomControls"]
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "+ Drop Fish"
+
+[node name="VSModeBtn" type="Button" parent="HUD/Margin/BottomControls"]
+custom_minimum_size = Vector2(260, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "🏆 Play VS. Mode"
+
+[node name="CoopModeBtn" type="Button" parent="HUD/Margin/BottomControls"]
+custom_minimum_size = Vector2(260, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "🤝 Play Co-Op Mode"
+
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="MatchSettingsDialog" parent="SettingsLayer" instance=ExtResource("2_settings")]
+visible = false
+
+[connection signal="pressed" from="HUD/Margin/BottomControls/SettingsBtn" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/AddPlayerBtn" to="." method="_on_add_player_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/VSModeBtn" to="." method="_on_vs_mode_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/CoopModeBtn" to="." method="_on_coop_mode_pressed"]

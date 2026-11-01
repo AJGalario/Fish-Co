@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx62j8u71vbm"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_pico_leak/PicoLeak.gd" id="2_leak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1920, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btn"]
+size = Vector2(120, 30)
+
+[node name="PicoLeak" instance=ExtResource("1_base")]
+script = ExtResource("2_leak")
+
+[node name="Ground" type="StaticBody2D" parent="." index="0"]
+position = Vector2(960, 800)
+collision_layer = 1
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Ground" index="0"]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="1"]
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="ButtonA" type="Area2D" parent="." index="1"]
+position = Vector2(500, 755)
+collision_layer = 0
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="ButtonA" index="0"]
+offset_left = -60.0
+offset_top = -15.0
+offset_right = 60.0
+offset_bottom = 15.0
+color = Color(0.9, 0.7, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonA" index="1"]
+shape = SubResource("RectangleShape2D_btn")
+
+[node name="LabelA" type="Label" parent="ButtonA" index="2"]
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 40.0
+offset_bottom = -27.0
+text = "PLUG A"
+horizontal_alignment = 1
+
+[node name="ButtonB" type="Area2D" parent="." index="2"]
+position = Vector2(1420, 755)
+collision_layer = 0
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="ButtonB" index="0"]
+offset_left = -60.0
+offset_top = -15.0
+offset_right = 60.0
+offset_bottom = 15.0
+color = Color(0.9, 0.7, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButtonB" index="1"]
+shape = SubResource("RectangleShape2D_btn")
+
+[node name="LabelB" type="Label" parent="ButtonB" index="2"]
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 40.0
+offset_bottom = -27.0
+text = "PLUG B"
+horizontal_alignment = 1
+
+[node name="LeakHazard" type="ColorRect" parent="." index="3"]
+offset_left = 900.0
+offset_top = 200.0
+offset_right = 1020.0
+offset_bottom = 770.0
+color = Color(0.1, 0.7, 0.9, 0.4)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfghj83k2mflp"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_flappy_fish/FlappyFish.gd" id="2_flappy"]
+
+[node name="FlappyFish" instance=ExtResource("1_base")]
+script = ExtResource("2_flappy")
+
+[node name="WaterBackground" type="ColorRect" parent="." index="0"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.05, 0.22, 0.38, 1)
+
+[node name="PillarContainer" type="Node2D" parent="." index="1"]
+
+[node name="CeilingHazard" type="ColorRect" parent="." index="2"]
+offset_right = 1920.0
+offset_bottom = 20.0
+color = Color(0.2, 0.4, 0.6, 1)
+
+[node name="FloorHazard" type="ColorRect" parent="." index="3"]
+offset_top = 1060.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.7, 0.55, 0.35, 1)
+
+[node name="Spawn1" parent="SpawnPoints" index="0"]
+position = Vector2(250, 540)
+
+[node name="Spawn2" parent="SpawnPoints" index="1"]
+position = Vector2(300, 540)
+
+[node name="Spawn3" parent="SpawnPoints" index="2"]
+position = Vector2(350, 540)
+
+[node name="Spawn4" parent="SpawnPoints" index="3"]
+position = Vector2(400, 540)

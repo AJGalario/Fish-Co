@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://dmcfgmodal123"]
+
+[ext_resource type="Script" path="res://scenes/aquarium_lobby/MatchSettingsDialog.gd" id="1_dialog"]
+
+[node name="MatchSettingsDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dialog")
+
+[node name="DimOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="Panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(850, 700)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -350.0
+offset_right = 425.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "⚙️ MATCH CONFIGURATIONS"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="BGLabel" type="Label" parent="Panel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Background Theme:"
+
+[node name="BGOption" type="OptionButton" parent="Panel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(300, 45)
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="Panel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Minigame Duration:"
+
+[node name="TimeBox" type="HBoxContainer" parent="Panel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TimeSlider" type="HSlider" parent="Panel/Margin/VBox/Grid/TimeBox"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 30.0
+max_value = 60.0
+step = 5.0
+value = 30.0
+
+[node name="TimeValueLabel" type="Label" parent="Panel/Margin/VBox/Grid/TimeBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "30 sec"
+
+[node name="BotCountLabel" type="Label" parent="Panel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Bot Count:"
+
+[node name="BotCountOption" type="OptionButton" parent="Panel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(300, 45)
+layout_mode = 2
+
+[node name="BotDiffLabel" type="Label" parent="Panel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Bot Difficulty:"
+
+[node name="BotDiffOption" type="OptionButton" parent="Panel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(300, 45)
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="MinigamesTitle" type="Label" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Enabled Minigames Playlist:"
+
+[node name="MinigameBox" type="VBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CheckTyping" type="CheckBox" parent="Panel/Margin/VBox/MinigameBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Typing Reef Race"
+
+[node name="CheckFlappy" type="CheckBox" parent="Panel/Margin/VBox/MinigameBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Flappy Fish"
+
+[node name="CheckDebris" type="CheckBox" parent="Panel/Margin/VBox/MinigameBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Debris Dash"
+
+[node name="CheckPellet" type="CheckBox" parent="Panel/Margin/VBox/MinigameBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "Pellet Frenzy (osu!catch + Slap)"
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="SaveBtn" type="Button" parent="Panel/Margin/VBox/ButtonRow"]
+custom_minimum_size = Vector2(220, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "💾 Save Changes"
+
+[node name="DiscardBtn" type="Button" parent="Panel/Margin/VBox/ButtonRow"]
+custom_minimum_size = Vector2(220, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "❌ Discard Changes"

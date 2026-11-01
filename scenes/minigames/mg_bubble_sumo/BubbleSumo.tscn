@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cih8g2u6q782k"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_bubble_sumo/BubbleSumo.gd" id="2_sumo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(1000, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lava"]
+size = Vector2(2500, 200)
+
+[node name="BubbleSumo" instance=ExtResource("1_base")]
+script = ExtResource("2_sumo")
+
+[node name="ArenaFloor" type="StaticBody2D" parent="." index="0"]
+position = Vector2(960, 720)
+collision_layer = 1
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="ArenaFloor" index="0"]
+offset_left = -500.0
+offset_top = -30.0
+offset_right = 500.0
+offset_bottom = 30.0
+color = Color(0.18, 0.44, 0.62, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaFloor" index="1"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="LavaWaterZone" type="Area2D" parent="." index="1"]
+position = Vector2(960, 1050)
+collision_layer = 0
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="LavaWaterZone" index="0"]
+offset_left = -1250.0
+offset_top = -100.0
+offset_right = 1250.0
+offset_bottom = 100.0
+color = Color(0.85, 0.2, 0.2, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LavaWaterZone" index="1"]
+shape = SubResource("RectangleShape2D_lava")

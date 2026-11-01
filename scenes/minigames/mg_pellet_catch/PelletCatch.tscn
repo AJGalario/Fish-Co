@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhu4v8e34yosu"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_pellet_catch/PelletCatch.gd" id="2_pellet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tank_floor"]
+size = Vector2(1920, 60)
+
+[node name="PelletCatch" instance=ExtResource("1_base")]
+script = ExtResource("2_pellet")
+
+[node name="WaterBackground" type="ColorRect" parent="." index="0"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.07, 0.18, 0.35, 1)
+
+[node name="TankFloor" type="StaticBody2D" parent="." index="1"]
+position = Vector2(960, 850)
+collision_layer = 1
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="TankFloor" index="0"]
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 960.0
+offset_bottom = 30.0
+color = Color(0.72, 0.6, 0.42, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TankFloor" index="1"]
+shape = SubResource("RectangleShape2D_tank_floor")
+
+[node name="CatchScoreLabel" type="Label" parent="HUD/Margin/TopBar" index="3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Pellets: P1: 0 | P2: 0"
+
+[node name="Spawn1" parent="SpawnPoints" index="0"]
+position = Vector2(500, 800)
+
+[node name="Spawn2" parent="SpawnPoints" index="1"]
+position = Vector2(800, 800)
+
+[node name="Spawn3" parent="SpawnPoints" index="2"]
+position = Vector2(1100, 800)
+
+[node name="Spawn4" parent="SpawnPoints" index="3"]
+position = Vector2(1400, 800)

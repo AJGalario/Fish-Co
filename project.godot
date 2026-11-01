@@ -1,0 +1,62 @@
+; Engine configuration file.
+; Fish-Co: A chaotic aquatic party game inspired by Move or Die, Mario Party, Pico Park, and Machine Party!
+config_version=5
+
+[application]
+
+config/name="Fish-Co"
+config/description="Fast-paced aquatic party game with scalable UI, local play & multiplayer mechanics."
+config/version="0.1.0"
+run/main_scene="res://scenes/main_menu/MainMenu.tscn"
+config/features=PackedStringArray("4.7", "Forward Plus")
+
+[autoload]
+
+EventBus="*res://autoloads/EventBus.gd"
+GameManager="*res://autoloads/GameManager.gd"
+NetworkManager="*res://autoloads/NetworkManager.gd"
+ModifierManager="*res://autoloads/ModifierManager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[input]
+
+; Player 1 (WASD + Space)
+p1_left={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":65,"physical_keycode":65)]}
+p1_right={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":68,"physical_keycode":68)]}
+p1_up={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":87,"physical_keycode":87)]}
+p1_down={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":83,"physical_keycode":83)]}
+p1_jump={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":87,"physical_keycode":87)]}
+p1_action={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":32,"physical_keycode":32)]}
+
+; Player 2 (Arrow keys + Enter)
+p2_left={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194319,"physical_keycode":4194319)]}
+p2_right={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194321,"physical_keycode":4194321)]}
+p2_up={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194320,"physical_keycode":4194320)]}
+p2_down={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194322,"physical_keycode":4194322)]}
+p2_jump={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194320,"physical_keycode":4194320)]}
+p2_action={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194309,"physical_keycode":4194309)]}
+
+; Player 3 (IJKL + U + Gamepad 0)
+p3_left={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":74,"physical_keycode":74), Object(InputEventJoypadMotion,"device":0,"axis":0,"axis_value":-1.0)]}
+p3_right={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":76,"physical_keycode":76), Object(InputEventJoypadMotion,"device":0,"axis":0,"axis_value":1.0)]}
+p3_up={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":73,"physical_keycode":73), Object(InputEventJoypadMotion,"device":0,"axis":1,"axis_value":-1.0)]}
+p3_down={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":75,"physical_keycode":75), Object(InputEventJoypadMotion,"device":0,"axis":1,"axis_value":1.0)]}
+p3_jump={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":73,"physical_keycode":73), Object(InputEventJoypadButton,"device":0,"button_index":0)]}
+p3_action={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":85,"physical_keycode":85), Object(InputEventJoypadButton,"device":0,"button_index":1)]}
+
+; Player 4 (Numpad 4856 + Gamepad 1)
+p4_left={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194440,"physical_keycode":4194440), Object(InputEventJoypadMotion,"device":1,"axis":0,"axis_value":-1.0)]}
+p4_right={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194442,"physical_keycode":4194442), Object(InputEventJoypadMotion,"device":1,"axis":0,"axis_value":1.0)]}
+p4_up={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194444,"physical_keycode":4194444), Object(InputEventJoypadMotion,"device":1,"axis":1,"axis_value":-1.0)]}
+p4_down={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194441,"physical_keycode":4194441), Object(InputEventJoypadMotion,"device":1,"axis":1,"axis_value":1.0)]}
+p4_jump={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194444,"physical_keycode":4194444), Object(InputEventJoypadButton,"device":1,"button_index":0)]}
+p4_action={"deadzone": 0.2, "events": [Object(InputEventKey,"keycode":4194441,"physical_keycode":4194441), Object(InputEventJoypadButton,"device":1,"button_index":1)]}
+
+[rendering]
+
+renderer/rendering_method="forward_plus"

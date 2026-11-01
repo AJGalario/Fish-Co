@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfghj83k2m098"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_machine_gears/MachineGears.gd" id="2_gears"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1600, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arm"]
+size = Vector2(400, 30)
+
+[node name="MachineGears" instance=ExtResource("1_base")]
+script = ExtResource("2_gears")
+
+[node name="Floor" type="StaticBody2D" parent="." index="0"]
+position = Vector2(960, 800)
+collision_layer = 1
+collision_mask = 7
+
+[node name="ColorRect" type="ColorRect" parent="Floor" index="0"]
+offset_left = -800.0
+offset_top = -25.0
+offset_right = 800.0
+offset_bottom = 25.0
+color = Color(0.25, 0.28, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" index="1"]
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="SweeperArm" type="AnimatableBody2D" parent="." index="1"]
+position = Vector2(960, 775)
+collision_layer = 4
+collision_mask = 2
+
+[node name="ArmShape" type="CollisionShape2D" parent="SweeperArm" index="0"]
+position = Vector2(200, 0)
+shape = SubResource("RectangleShape2D_arm")
+
+[node name="VisualArm" type="ColorRect" parent="SweeperArm" index="1"]
+offset_top = -15.0
+offset_right = 400.0
+offset_bottom = 15.0
+color = Color(0.9, 0.3, 0.2, 1)
+
+[node name="HazardDetector" type="Area2D" parent="SweeperArm" index="2"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HazardShape" type="CollisionShape2D" parent="SweeperArm/HazardDetector" index="0"]
+position = Vector2(200, 0)
+shape = SubResource("RectangleShape2D_arm")
+
+[connection signal="body_entered" from="SweeperArm/HazardDetector" to="." method="_on_sweeper_hit"]

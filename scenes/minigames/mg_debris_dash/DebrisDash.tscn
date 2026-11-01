@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://cih8g2u6qdeb1"]
+
+[ext_resource type="PackedScene" path="res://systems/MinigameBase.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/minigames/mg_debris_dash/DebrisDash.gd" id="2_dash"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_finish"]
+size = Vector2(80, 1080)
+
+[node name="DebrisDash" instance=ExtResource("1_base")]
+script = ExtResource("2_dash")
+
+[node name="WaterBackground" type="ColorRect" parent="." index="0"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.04, 0.16, 0.28, 1)
+
+[node name="WorldContainer" type="Node2D" parent="." index="1"]
+
+[node name="FinishLineArea" type="Area2D" parent="WorldContainer" index="0"]
+position = Vector2(3500, 540)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldContainer/FinishLineArea" index="0"]
+shape = SubResource("RectangleShape2D_finish")
+
+[node name="FinishLineVisual" type="ColorRect" parent="WorldContainer/FinishLineArea" index="1"]
+offset_left = -20.0
+offset_top = -540.0
+offset_right = 20.0
+offset_bottom = 540.0
+color = Color(0.2, 0.9, 0.4, 0.8)
+
+[node name="Label" type="Label" parent="WorldContainer/FinishLineArea" index="2"]
+offset_left = -30.0
+offset_top = -40.0
+offset_right = 30.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 32
+text = "FINISH"
+horizontal_alignment = 1
+
+[node name="Spawn1" parent="SpawnPoints" index="0"]
+position = Vector2(400, 350)
+
+[node name="Spawn2" parent="SpawnPoints" index="1"]
+position = Vector2(400, 500)
+
+[node name="Spawn3" parent="SpawnPoints" index="2"]
+position = Vector2(400, 650)
+
+[node name="Spawn4" parent="SpawnPoints" index="3"]
+position = Vector2(400, 800)
