@@ -69,7 +69,7 @@ func _load_config_into_ui(cfg: MatchConfig) -> void:
 		time_val_label.text = "%d sec" % int(time_slider.value)
 	
 	if check_typing:
-		check_typing.button_pressed = "res://scenes/minigames/mg_typing_race/TypingRace.tscn" in cfg.enabled_minigames
+		check_typing.button_pressed = "res://scenes/minigames/mg_treasure_dig/TreasureDig.tscn" in cfg.enabled_minigames
 	if check_flappy:
 		check_flappy.button_pressed = "res://scenes/minigames/mg_flappy_fish/FlappyFish.tscn" in cfg.enabled_minigames
 	if check_debris:
@@ -94,7 +94,7 @@ func _on_save_pressed() -> void:
 	
 	var selected_games: Array[String] = []
 	if check_typing and check_typing.button_pressed:
-		selected_games.append("res://scenes/minigames/mg_typing_race/TypingRace.tscn")
+		selected_games.append("res://scenes/minigames/mg_treasure_dig/TreasureDig.tscn")
 	if check_flappy and check_flappy.button_pressed:
 		selected_games.append("res://scenes/minigames/mg_flappy_fish/FlappyFish.tscn")
 	if check_debris and check_debris.button_pressed:

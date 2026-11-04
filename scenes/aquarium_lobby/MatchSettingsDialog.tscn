@@ -127,7 +127,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 button_pressed = true
-text = "Typing Reef Race"
+text = "Sunken Scramble (Treasure Dig)"
 
 [node name="CheckFlappy" type="CheckBox" parent="Panel/Margin/VBox/MinigameBox"]
 layout_mode = 2

@@ -8,7 +8,7 @@ enum BackgroundTheme { DEEP_OCEAN, CORAL_REEF, SUNKEN_RUINS, MIDNIGHT_TRENCH }
 
 # Active minigames selection (scene paths)
 @export var enabled_minigames: Array[String] = [
-	"res://scenes/minigames/mg_typing_race/TypingRace.tscn",
+	"res://scenes/minigames/mg_treasure_dig/TreasureDig.tscn",
 	"res://scenes/minigames/mg_flappy_fish/FlappyFish.tscn",
 	"res://scenes/minigames/mg_debris_dash/DebrisDash.tscn",
 	"res://scenes/minigames/mg_pellet_catch/PelletCatch.tscn"

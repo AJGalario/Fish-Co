@@ -16,7 +16,7 @@ var max_rounds: int = 4
 
 # All possible VS Minigames
 var all_vs_minigames: Array[String] = [
-	"res://scenes/minigames/mg_typing_race/TypingRace.tscn",
+	"res://scenes/minigames/mg_treasure_dig/TreasureDig.tscn",
 	"res://scenes/minigames/mg_flappy_fish/FlappyFish.tscn",
 	"res://scenes/minigames/mg_debris_dash/DebrisDash.tscn",
 	"res://scenes/minigames/mg_pellet_catch/PelletCatch.tscn"

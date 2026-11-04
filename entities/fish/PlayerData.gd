@@ -15,6 +15,9 @@ enum BotDifficulty { EASY, MEDIUM, HARD }
 @export var is_bot: bool = false
 @export var bot_difficulty: BotDifficulty = BotDifficulty.MEDIUM
 
+# Input device: -1 = keyboard, 0+ = gamepad device index
+@export var device_id: int = -1
+
 # Oxygen/energy mechanics
 @export var oxygen: float = 100.0
 

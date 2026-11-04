@@ -3,6 +3,16 @@
 [ext_resource type="Script" path="res://scenes/aquarium_lobby/AquariumLobby.gd" id="1_lobby"]
 [ext_resource type="PackedScene" path="res://scenes/aquarium_lobby/MatchSettingsDialog.tscn" id="2_settings"]
 
+; ─────────────────────────────────────────────────────────────────────
+;  AQUARIUM LOBBY SCENE
+;
+;  Tank occupies the full screen. Fish are spawned in 4 fixed columns:
+;    P1 → x=340   P2 → x=700   P3 → x=1060   P4 → x=1420
+;
+;  HUD floats on top (CanvasLayer) with title, player count, controls
+;  hint strip at the bottom, and action buttons.
+; ─────────────────────────────────────────────────────────────────────
+
 [node name="AquariumLobby" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -12,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lobby")
 
+; ── Tank (full screen) ────────────────────────────────────────────────
 [node name="TankArea" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -29,34 +40,88 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.25, 0.42, 1)
 
+; Subtle mid-water layer
+[node name="MidWater" type="ColorRect" parent="TankArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 400.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.18, 0.35, 0.45)
+
+; Sand bed
 [node name="SandBed" type="ColorRect" parent="TankArea"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -140.0
+offset_top = -130.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.76, 0.65, 0.45, 1)
 
+; Sand ripple detail strip
+[node name="SandRipple" type="ColorRect" parent="TankArea"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.65, 0.54, 0.35, 0.6)
+
+; Column separator lines (subtle — help players see their zones)
+[node name="ColLine1" type="ColorRect" parent="TankArea"]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 0.0
+offset_right = 521.0
+offset_bottom = 950.0
+color = Color(1, 1, 1, 0.07)
+
+[node name="ColLine2" type="ColorRect" parent="TankArea"]
+layout_mode = 0
+offset_left = 879.0
+offset_top = 0.0
+offset_right = 881.0
+offset_bottom = 950.0
+color = Color(1, 1, 1, 0.07)
+
+[node name="ColLine3" type="ColorRect" parent="TankArea"]
+layout_mode = 0
+offset_left = 1239.0
+offset_top = 0.0
+offset_right = 1241.0
+offset_bottom = 950.0
+color = Color(1, 1, 1, 0.07)
+
+; Glass border
 [node name="AquariumGlassBorder" type="ReferenceRect" parent="TankArea"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-border_color = Color(0.4, 0.8, 1, 0.5)
-border_width = 8.0
+border_color = Color(0.4, 0.8, 1, 0.45)
+border_width = 6.0
 editor_only = false
 
+; Fish container (Node2D so fish use 2D positions)
 [node name="FishContainer" type="Node2D" parent="TankArea"]
 
+; ── Hand visual (animated drop hand) ─────────────────────────────────
 [node name="HandVisual" type="ColorRect" parent="."]
 visible = false
 layout_mode = 0
@@ -66,6 +131,7 @@ offset_right = 880.0
 offset_bottom = -20.0
 color = Color(0.9, 0.75, 0.65, 1)
 
+; ── HUD ───────────────────────────────────────────────────────────────
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Margin" type="MarginContainer" parent="HUD"]
@@ -74,34 +140,49 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="HUD/Margin"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="HUD/Margin/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 54
+theme_override_font_sizes/font_size = 52
 text = "🏠 THE AQUARIUM TANK"
 horizontal_alignment = 1
 
 [node name="PlayerCountLabel" type="Label" parent="HUD/Margin/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Fishes in Aquarium: 2 / 4"
+theme_override_font_sizes/font_size = 24
+text = "🐠 Fishes in Tank: 2 / 4"
 horizontal_alignment = 1
+
+; Per-player controls strip — updated dynamically by AquariumLobby.gd
+[node name="ControlsHint" type="Label" parent="HUD/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.72, 0.9, 1, 0.85)
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
+
+; Bottom action bar — pinned to bottom of VBox via size flags
+[node name="Spacer" type="Control" parent="HUD/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 10)
 
 [node name="BottomControls" type="HBoxContainer" parent="HUD/Margin"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 20
+theme_override_constants/separation = 18
 
 [node name="SettingsBtn" type="Button" parent="HUD/Margin/BottomControls"]
 custom_minimum_size = Vector2(240, 60)
@@ -110,10 +191,10 @@ theme_override_font_sizes/font_size = 22
 text = "⚙️ Match Settings"
 
 [node name="AddPlayerBtn" type="Button" parent="HUD/Margin/BottomControls"]
-custom_minimum_size = Vector2(220, 60)
+custom_minimum_size = Vector2(230, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "+ Drop Fish"
+text = "➕ Drop Fish"
 
 [node name="VSModeBtn" type="Button" parent="HUD/Margin/BottomControls"]
 custom_minimum_size = Vector2(260, 60)
@@ -127,13 +208,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "🤝 Play Co-Op Mode"
 
+; ── Settings modal layer ──────────────────────────────────────────────
 [node name="SettingsLayer" type="CanvasLayer" parent="."]
 layer = 10
 
 [node name="MatchSettingsDialog" parent="SettingsLayer" instance=ExtResource("2_settings")]
 visible = false
 
-[connection signal="pressed" from="HUD/Margin/BottomControls/SettingsBtn" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="HUD/Margin/BottomControls/AddPlayerBtn" to="." method="_on_add_player_pressed"]
-[connection signal="pressed" from="HUD/Margin/BottomControls/VSModeBtn" to="." method="_on_vs_mode_pressed"]
-[connection signal="pressed" from="HUD/Margin/BottomControls/CoopModeBtn" to="." method="_on_coop_mode_pressed"]
+; ── Signal connections ────────────────────────────────────────────────
+[connection signal="pressed" from="HUD/Margin/BottomControls/SettingsBtn"   to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/AddPlayerBtn"  to="." method="_on_add_player_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/VSModeBtn"     to="." method="_on_vs_mode_pressed"]
+[connection signal="pressed" from="HUD/Margin/BottomControls/CoopModeBtn"   to="." method="_on_coop_mode_pressed"]
