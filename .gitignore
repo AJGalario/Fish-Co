@@ -24,3 +24,6 @@ dist/
 *.exe
 *.pck
 *.apk
+
+# Legacy minigames placeholder
+scenes/minigames/mg_typing_race/
